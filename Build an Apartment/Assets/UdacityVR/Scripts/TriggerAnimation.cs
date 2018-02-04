@@ -11,11 +11,17 @@ public class TriggerAnimation : MonoBehaviour
 	[Tooltip ("The name of the Animator trigger parameter")]
 	public string triggerName;
 
+	private bool isPlaying = true;
+
 	void Update ()
 	{
 		// If the player pressed the cardboard button (or touched the screen), set the trigger parameter to active (until it has been used in a transition)
 		if (Input.GetMouseButtonDown (0)) {
 			animator.SetTrigger (triggerName);
+
+			animator.speed = this.isPlaying ? 0 : 1;
+			this.isPlaying = !this.isPlaying;
+
 		}
 	}
 }
